@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#050505" />
+
+  <title>Alles Gute zum Geburtstag</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Metal+Mania&family=Oswald:wght@400;600;700&display=swap');
+
+    :root {
+      --black: #050505;
+      --dark: #0b0b0b;
+      --red: #d71920;
+      --bright-red: #ff1717;
+      --orange: #ff6500;
+      --gold: #ffc247;
+      --white: #eeeeee;
+      --gray: #aaaaaa;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+      background: var(--black);
+      cursor: default;
+    }
+
+    body {
+      overflow-x: hidden;
+      color: white;
+      font-family: "Oswald", Arial, sans-serif;
+      background:
+        radial-gradient(circle at 50% 15%, rgba(155, 0, 0, 0.22), transparent 32%),
+        linear-gradient(180deg, #090909 0%, #000000 75%);
+    }
+
+    /* Textura de humo animada */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.15;
+      background-image:
+        repeating-radial-gradient(circle at 0 0, transparent 0 5px, #777 6px 7px);
+      mix-blend-mode: screen;
+      animation: smokeDrift 30s linear infinite;
+    }
+
+    @keyframes smokeDrift {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-2%, -1%) scale(1.02); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+
+    canvas {
+      display: block;
+    }
+
+    #particles,
+    #fireworks {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+    }
+
+    #particles {
+      z-index: 1;
+    }
+
+    #fireworks {
+      z-index: 20;
+    }
+
+    main {
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Láseres mejorados */
+    .laser-container {
+      position: fixed;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .laser {
+      position: absolute;
+      width: 150vw;
+      height: 3px;
+      left: -25vw;
+      opacity: 0.2;
+      filter: blur(3px);
+      background: linear-gradient(90deg, transparent, var(--red), white, var(--red), transparent);
+      animation: laserMove 8s ease-in-out infinite alternate;
+      box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+    }
+
+    .laser:nth-of-type(1) {
+      top: 15%;
+      animation-duration: 10s;
+      animation-delay: -2s;
+    }
+    .laser:nth-of-type(2) {
+      top: 45%;
+      animation-duration: 12s;
+      animation-delay: -5s;
+      background: linear-gradient(90deg, transparent, var(--gold), white, var(--gold), transparent);
+      height: 4px;
+    }
+    .laser:nth-of-type(3) {
+      top: 75%;
+      animation-duration: 9s;
+      animation-delay: -8s;
+      background: linear-gradient(90deg, transparent, #ff00aa, white, #ff00aa, transparent);
+      height: 2px;
+      opacity: 0.15;
+    }
+
+    @keyframes laserMove {
+      0% { transform: translateX(-10vw) rotate(-3deg); opacity: 0.1; }
+      30% { opacity: 0.25; }
+      70% { opacity: 0.2; }
+      100% { transform: translateX(20vw) rotate(4deg); opacity: 0.05; }
+    }
+
+    section {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 70px 20px;
+    }
+
+    .hero {
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      font-size: 0.8rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      opacity: 0.85;
+      animation: glowPulse 2s infinite alternate;
+    }
+
+    @keyframes glowPulse {
+      0% { opacity: 0.6; text-shadow: 0 0 5px rgba(255, 200, 0, 0.2); }
+      100% { opacity: 1; text-shadow: 0 0 20px rgba(255, 200, 0, 0.6); }
+    }
+
+    h1,
+    h2,
+    .birthday-number,
+    .name {
+      font-family: "Metal Mania", Impact, fantasy;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin-top: 20px;
+      color: var(--white);
+      font-size: clamp(2.2rem, 8vw, 7rem);
+      line-height: 0.95;
+      letter-spacing: 4px;
+      text-shadow: 4px 4px 0 #680b0b, 0 0 15px var(--red);
+      animation: glitch 2.5s infinite;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    h1:hover {
+      transform: scale(1.02);
+    }
+
+    @keyframes glitch {
+      0%, 90%, 100% { transform: none; text-shadow: 4px 4px 0 #680b0b, 0 0 15px var(--red); }
+      92% { transform: translate(4px, -2px) skewX(12deg); text-shadow: -4px 0 cyan, 4px 0 var(--red); }
+      94% { transform: translate(-3px, 2px); text-shadow: 4px 0 var(--gold), -4px 0 #00ffff; }
+    }
+
+    .subtitle {
+      max-width: 650px;
+      margin: 25px auto 0;
+      color: #dddddd;
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+      letter-spacing: 1px;
+    }
+
+    .match-area {
+      position: relative;
+      width: min(600px, 90vw);
+      height: 300px;
+      margin: 20px auto 0;
+    }
+
+    .match-stick {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 255px;
+      height: 18px;
+      border-radius: 10px;
+      background: linear-gradient(#e8b36a, #7b321e 60%, #35120c);
+      box-shadow: 0 0 10px #000, inset 0 2px #f4ca89;
+      transform: translate(-50%, -50%) rotate(-8deg);
+      animation: burnStick 4.1s forwards;
+    }
+
+    .match-head {
+      position: absolute;
+      top: -10px;
+      right: -25px;
+      width: 40px;
+      height: 38px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 25%, #ffca61, #e33b0b 45%, #4d0700);
+      box-shadow: 0 0 20px var(--orange);
+    }
+
+    .flame {
+      position: absolute;
+      top: -95px;
+      right: -12px;
+      width: 58px;
+      height: 110px;
+      border-radius: 55% 45% 55% 45%;
+      background: linear-gradient(#fff5a3, #ffb000 40%, #e3210c 78%);
+      box-shadow: 0 0 20px #ff6500, 0 0 60px #ff2200;
+      transform: rotate(20deg);
+      animation: flame 0.12s infinite alternate;
+    }
+
+    .flame::after {
+      content: "";
+      position: absolute;
+      top: 30px;
+      left: 18px;
+      width: 20px;
+      height: 50px;
+      border-radius: 50%;
+      background: #fff6c4;
+    }
+
+    @keyframes flame {
+      from { scale: 0.92 1.05; rotate: -3deg; }
+      to { scale: 1.08 0.95; rotate: 5deg; }
+    }
+
+    @keyframes burnStick {
+      0% { clip-path: inset(0 0 0 0); }
+      75% { clip-path: inset(0 0 0 70%); opacity: 1; }
+      100% { opacity: 0; transform: translate(-50%, -50%) rotate(-8deg) translateX(80px); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: scale(0.5);
+      animation: revealContent 1.5s 3.7s forwards;
+    }
+
+    @keyframes revealContent {
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .birthday-number {
+      color: transparent;
+      font-size: clamp(6rem, 25vw, 16rem);
+      line-height: 0.75;
+      background: linear-gradient(135deg, #fff4ad, #a85c00 45%, #ef1d1d 80%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-stroke: 2px var(--gold);
+      filter: drop-shadow(0 0 15px var(--red));
+      animation: numberPulse 2s infinite alternate;
+    }
+
+    @keyframes numberPulse {
+      0% { filter: drop-shadow(0 0 15px var(--red)); }
+      100% { filter: drop-shadow(0 0 40px var(--red)) drop-shadow(0 0 80px orange); }
+    }
+
+    .name {
+      margin-top: 30px;
+      color: var(--bright-red);
+      font-size: clamp(2.2rem, 8vw, 5.5rem);
+      text-shadow: 3px 3px #330000, 0 0 20px red;
+    }
+
+    .scroll-note {
+      position: absolute;
+      bottom: 28px;
+      color: #aaaaaa;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      animation: bounce 1.3s infinite;
+    }
+
+    @keyframes bounce {
+      50% { transform: translateY(10px); }
+    }
+
+    .content {
+      width: min(900px, 94vw);
+      text-align: center;
+    }
+
+    .content h2 {
+      margin-bottom: 25px;
+      color: var(--gold);
+      font-size: clamp(2rem, 6vw, 4rem);
+      text-shadow: 0 0 20px rgba(255, 200, 0, 0.3);
+    }
+
+    .message {
+      padding: 35px clamp(20px, 6vw, 70px);
+      border: 1px solid #701313;
+      color: #eeeeee;
+      font-size: clamp(1.1rem, 2.4vw, 1.5rem);
+      line-height: 1.7;
+      background: rgba(20, 5, 5, 0.8);
+      box-shadow: 0 0 30px rgba(200, 0, 0, 0.18), inset 0 0 30px #000;
+      backdrop-filter: blur(2px);
+    }
+
+    .message p + p {
+      margin-top: 18px;
+    }
+
+    .message span {
+      color: var(--gold);
+      font-weight: bold;
+    }
+
+    .counter-box {
+      width: min(500px, 90vw);
+      margin: 45px auto 25px;
+      padding: 25px;
+      border: 2px solid #772020;
+      background: #0b0b0b;
+      box-shadow: inset 0 0 25px #000, 0 0 20px rgba(255, 0, 0, 0.15);
+      transition: box-shadow 0.5s;
+    }
+
+    .counter-box.reached {
+      box-shadow: inset 0 0 25px #000, 0 0 60px rgba(255, 215, 0, 0.4);
+      border-color: var(--gold);
+    }
+
+    .counter-label {
+      color: #999999;
+      letter-spacing: 3px;
+    }
+
+    .counter {
+      margin-top: 10px;
+      color: var(--bright-red);
+      font-family: 'Courier New', monospace;
+      font-size: clamp(4rem, 15vw, 8rem);
+      text-shadow: 0 0 12px red;
+      transition: color 0.3s;
+    }
+
+    .counter.done {
+      color: var(--gold);
+      text-shadow: 0 0 30px gold;
+    }
+
+    button {
+      padding: 16px 28px;
+      border: 1px solid var(--gold);
+      cursor: pointer;
+      color: white;
+      font-family: "Oswald", sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #870909, #210000);
+      box-shadow: 0 0 15px rgba(255, 60, 0, 0.35);
+      transition: 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background: linear-gradient(135deg, #d21919, #430000);
+      animation: shake 0.12s infinite;
+    }
+
+    @keyframes shake {
+      0% { rotate: -1deg; }
+      50% { rotate: 1deg; }
+      100% { rotate: -1deg; }
+    }
+
+    .secret {
+      margin-top: 35px;
+    }
+
+    .secret input {
+      width: min(270px, 80vw);
+      padding: 13px;
+      border: 1px solid #5b2020;
+      outline: none;
+      color: white;
+      text-align: center;
+      text-transform: uppercase;
+      background: #111111;
+      transition: border-color 0.3s;
+    }
+
+    .secret input:focus {
+      border-color: var(--gold);
+    }
+
+    .hidden-message {
+      display: none;
+      margin-top: 20px;
+      color: var(--gold);
+      font-size: 1.3rem;
+      animation: flashText 0.7s infinite alternate;
+    }
+
+    @keyframes flashText {
+      from { opacity: 0.55; }
+      to { opacity: 1; text-shadow: 0 0 15px red; }
+    }
+
+    .heart {
+      margin-top: 35px;
+      color: var(--bright-red);
+      font-size: 4rem;
+      animation: heartbeat 1s infinite;
+    }
+
+    @keyframes heartbeat {
+      50% { transform: scale(1.2); }
+    }
+
+    .red-flash {
+      position: fixed;
+      inset: 0;
+      z-index: 30;
+      background: red;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.1s;
+    }
+
+    .red-flash.active {
+      animation: redFlash 1s forwards;
+    }
+
+    @keyframes redFlash {
+      0% { opacity: 0.75; }
+      100% { opacity: 0; }
+    }
+
+    .mode-feuer {
+      position: fixed;
+      inset: 0;
+      z-index: 5;
+      background: radial-gradient(circle at center, rgba(255, 0, 0, 0.15), transparent 70%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 2s;
+    }
+
+    .mode-feuer.active {
+      opacity: 1;
+    }
+
+    @media (max-width: 600px) {
+      section { padding: 55px 15px; }
+      .match-area { height: 250px; }
+      .match-stick { width: 190px; }
+      .message { padding: 25px 18px; }
+      .eyebrow { font-size: 0.65rem; letter-spacing: 3px; }
+    }
+
+    /* ===== NUEVAS SECCIONES AGREGADAS ===== */
+
+    /* Sección de "Abrir el regalo" */
+    .gift-section {
+      background: radial-gradient(circle at center, rgba(100, 0, 0, 0.2), transparent 70%);
+    }
+
+    .gift-box {
+      position: relative;
+      width: 200px;
+      height: 180px;
+      margin: 30px auto;
+      background: linear-gradient(145deg, #2a2a2a, #0a0a0a);
+      border: 3px solid var(--gold);
+      border-radius: 12px;
+      box-shadow: 0 0 50px rgba(255, 200, 0, 0.15);
+      cursor: pointer;
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .gift-box:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 80px rgba(255, 200, 0, 0.25);
+    }
+
+    .gift-box .gift-lid {
+      position: absolute;
+      top: -20px;
+      left: -3px;
+      width: calc(100% + 6px);
+      height: 30px;
+      background: linear-gradient(145deg, #3a3a3a, #1a1a1a);
+      border: 3px solid var(--gold);
+      border-bottom: none;
+      border-radius: 12px 12px 0 0;
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .gift-box.opened .gift-lid {
+      transform: translateY(-40px) rotateX(80deg);
+      opacity: 0;
+    }
+
+    .gift-box .gift-label {
+      font-family: "Metal Mania", cursive;
+      font-size: 1.1rem;
+      color: var(--gold);
+      text-align: center;
+      text-shadow: 0 0 20px rgba(255, 200, 0, 0.3);
+      z-index: 1;
+    }
+
+    .gift-box .gift-icon {
+      font-size: 3.5rem;
+      margin-bottom: 10px;
+      z-index: 1;
+      filter: drop-shadow(0 0 20px rgba(255, 200, 0, 0.3));
+    }
+
+    /* Contenido de la carta (se muestra al abrir) */
+    .letter-content {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 30px;
+      background: rgba(10, 5, 5, 0.95);
+      border: 2px solid var(--red);
+      border-radius: 16px;
+      box-shadow: 0 0 60px rgba(255, 0, 0, 0.15);
+      transform: scale(0);
+      opacity: 0;
+      transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .letter-content.show {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .letter-content .letter-title {
+      font-family: "Metal Mania", cursive;
+      font-size: 2rem;
+      color: var(--gold);
+      margin-bottom: 20px;
+      text-shadow: 0 0 30px rgba(255, 200, 0, 0.2);
+    }
+
+    .letter-content .letter-text {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: #ddd;
+    }
+
+    .letter-content .letter-text .final-message {
+      display: block;
+      margin-top: 25px;
+      font-size: 1.5rem;
+      color: var(--gold);
+      font-family: "Metal Mania", cursive;
+      text-shadow: 0 0 30px rgba(255, 200, 0, 0.3);
+    }
+
+    /* Línea del tiempo */
+    .timeline {
+      position: relative;
+      max-width: 700px;
+      margin: 30px auto;
+      padding: 20px 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, var(--red), var(--gold), var(--red));
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin: 30px 0;
+      padding: 20px 30px;
+      background: rgba(20, 5, 5, 0.7);
+      border: 1px solid #701313;
+      border-radius: 12px;
+      width: 45%;
+      box-shadow: 0 0 30px rgba(200, 0, 0, 0.08);
+      transition: all 0.3s;
+    }
+
+    .timeline-item:hover {
+      border-color: var(--gold);
+      box-shadow: 0 0 40px rgba(255, 200, 0, 0.1);
+    }
+
+    .timeline-item:nth-child(odd) {
+      margin-left: auto;
+      text-align: left;
+    }
+
+    .timeline-item:nth-child(even) {
+      margin-right: auto;
+      text-align: right;
+    }
+
+    .timeline-item .date {
+      color: var(--gold);
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      font-weight: bold;
+    }
+
+    .timeline-item .event {
+      font-size: 1.1rem;
+      margin-top: 5px;
+      color: #ddd;
+    }
+
+    .timeline-item .emoji {
+      position: absolute;
+      top: -15px;
+      font-size: 2rem;
+      background: var(--black);
+      padding: 5px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+    }
+
+    .timeline-item:nth-child(odd) .emoji {
+      left: -30px;
+    }
+
+    .timeline-item:nth-child(even) .emoji {
+      right: -30px;
+    }
+
+    /* Velas digitales */
+    .candles-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin: 30px auto;
+      max-width: 500px;
+    }
+
+    .candle {
+      width: 28px;
+      height: 50px;
+      background: linear-gradient(180deg, #ffd700, #ff8c00);
+      border-radius: 4px 4px 8px 8px;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 0 15px rgba(255, 200, 0, 0.3);
+    }
+
+    .candle::before {
+      content: '🔥';
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.2rem;
+      transition: all 0.3s;
+    }
+
+    .candle.lit::before {
+      content: '🔥';
+    }
+
+    .candle.extinguished {
+      background: linear-gradient(180deg, #4a4a4a, #2a2a2a);
+      box-shadow: none;
+    }
+
+    .candle.extinguished::before {
+      content: '💨';
+      font-size: 1rem;
+      top: -16px;
+    }
+
+    .candle:hover {
+      transform: scale(1.1);
+    }
+
+    .candle-wish {
+      margin-top: 20px;
+      font-size: 1.3rem;
+      color: var(--gold);
+      min-height: 60px;
+      text-shadow: 0 0 20px rgba(255, 200, 0, 0.2);
+    }
+
+    /* Ruleta de cumplidos */
+    .wheel-container {
+      position: relative;
+      width: 250px;
+      height: 250px;
+      margin: 30px auto;
+    }
+
+    .wheel {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 4px solid var(--gold);
+      background: conic-gradient(
+        #ff1515 0% 10%,
+        #ff7b00 10% 20%,
+        #ffd34e 20% 30%,
+        #ff1515 30% 40%,
+        #ff7b00 40% 50%,
+        #ffd34e 50% 60%,
+        #ff1515 60% 70%,
+        #ff7b00 70% 80%,
+        #ffd34e 80% 90%,
+        #ff1515 90% 100%
+      );
+      box-shadow: 0 0 60px rgba(255, 200, 0, 0.15);
+      transition: transform 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .wheel .pointer {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2rem;
+      filter: drop-shadow(0 0 20px rgba(255, 200, 0, 0.5));
+    }
+
+    .wheel-compliment {
+      margin-top: 20px;
+      font-size: 1.4rem;
+      color: var(--gold);
+      min-height: 50px;
+      font-family: "Metal Mania", cursive;
+      text-shadow: 0 0 30px rgba(255, 200, 0, 0.2);
+    }
+
+    /* Sección de "21 razones" */
+    .reasons-container {
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 30px;
+      background: rgba(10, 5, 5, 0.9);
+      border: 1px solid #701313;
+      border-radius: 16px;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .reasons-container .reason-counter {
+      font-family: "Metal Mania", cursive;
+      font-size: 3rem;
+      color: var(--gold);
+      margin-bottom: 10px;
+      text-shadow: 0 0 30px rgba(255, 200, 0, 0.2);
+    }
+
+    .reasons-container .reason-text {
+      font-size: 1.4rem;
+      color: #ddd;
+      text-align: center;
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .reasons-container .reason-final {
+      font-size: 1.6rem;
+      color: var(--gold);
+      font-family: "Metal Mania", cursive;
+      text-shadow: 0 0 30px rgba(255, 200, 0, 0.3);
+    }
+
+    /* Responsive para nuevas secciones */
+    @media (max-width: 768px) {
+      .timeline-item {
+        width: 80%;
+        margin: 20px auto !important;
+        text-align: center !important;
+      }
+      .timeline-item .emoji {
+        display: none;
+      }
+      .gift-box {
+        width: 160px;
+        height: 150px;
+      }
+      .candle {
+        width: 22px;
+        height: 40px;
+      }
+      .wheel-container {
+        width: 200px;
+        height: 200px;
+      }
+    }
+
+    /* ===== BOTÓN DE DESCARGA (BROMA) ===== */
+    .btn-download {
+    margin-top: 15px;
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-family: "Oswald", sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    }
+
+    .btn-download:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(37, 211, 102, 0.7);
+    }
+
+/* ===== MODAL ===== */
+    .modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    animation: fadeInModal 0.3s ease;
+    }
+
+    .modal-overlay.active {
+    display: flex;
+    }
+
+    @keyframes fadeInModal {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+    }
+
+    .modal-box {
+    max-width: 450px;
+    width: 90%;
+    background: #1a1a1a;
+    border: 2px solid var(--gold);
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    box-shadow: 0 0 60px rgba(255, 200, 0, 0.2);
+    position: relative;
+    }
+
+    .modal-box .emoji-big {
+    font-size: 4rem;
+    margin-bottom: 10px;
+    }
+
+    .modal-box h3 {
+    color: var(--gold);
+    font-family: "Metal Mania", cursive;
+    font-size: 2rem;
+    margin-bottom: 10px;
+    }
+
+    .modal-box p {
+    color: #ddd;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    }
+
+    .modal-box .btn-whatsapp {
+    display: inline-block;
+    padding: 14px 35px;
+    background: #25d366;
+    color: white;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: all 0.3s;
+    box-shadow: 0 0 20px rgba(37, 211, 102, 0.3);
+    }
+
+    .modal-box .btn-whatsapp:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(37, 211, 102, 0.6);
+    }
+
+    .modal-box .btn-close-modal {
+    margin-top: 15px;
+    background: transparent;
+    border: 1px solid #666;
+    color: #aaa;
+    padding: 8px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: 0.3s;
+    }
+
+    .modal-box .btn-close-modal:hover {
+    border-color: #fff;
+    color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="particles"></canvas>
+  <canvas id="fireworks"></canvas>
+
+  <div class="laser-container">
+    <div class="laser"></div>
+    <div class="laser"></div>
+    <div class="laser"></div>
+  </div>
+
+  <div class="red-flash" id="redFlash"></div>
+  <div class="mode-feuer" id="modeFeuer"></div>
+
+  <main>
+    <!-- SECCIÓN 1: HERO (tu código original intacto) -->
+    <section class="hero">
+      <div>
+        <div class="eyebrow">
+          un dia único para alguien especial
+        </div>
+
+        <h1 id="glitchTitle">
+          Alles Gute<br />
+          zum Geburtstag
+        </h1>
+
+        <p class="subtitle">
+          Hoy no se celebra un día cualquiera.<br />
+          Hoy cumple años una guagua :p.
+        </p>
+
+        <div class="match-area">
+          <div class="match-stick">
+            <div class="match-head"></div>
+            <div class="flame"></div>
+          </div>
+
+          <div class="reveal">
+            <div class="birthday-number">21</div>
+            <div class="name" id="nameHero">Angelyne</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scroll-note">
+        DESLIZA HACIA ABAJO ↓
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: CONTENIDO ORIGINAL (intacto) -->
+    <section>
+      <div class="content">
+        <h2>Te quiero muchísimo</h2>
+
+        <div class="message">
+          <p>
+            <span>Feliz cumpleaños lyna :3</span>
+          </p>
+          <p>
+            <span>
+              Existe personas que ven más allá de lo que los ojos pueden ver, y yo soy una de esas personas
+            </span>
+          </p>
+        </div>
+
+        <div class="counter-box" id="counterBox">
+          <div class="counter-label">
+            NIVEL DE CUMPLEAÑOS ALCANZADO
+          </div>
+
+          <div class="counter" id="counter">00</div>
+        </div>
+
+       
+
+        <div class="secret">
+          <input
+            id="secretInput"
+            type="text"
+            maxlength="5"
+            placeholder="Escribe FEUER"
+          />
+
+          <div class="hidden-message" id="hiddenMessage">
+            ⚡ Ya pero todo PH xfis ⚡
+          </div>
+        </div>
+
+        <div class="heart">♥</div>
+      </div>
+    </section>
+
+    <!-- ===== NUEVA SECCIÓN 1: ABRIR EL REGALO ===== -->
+    <section class="gift-section">
+      <div class="content">
+        <h2>🎁 Hay algo que todavía no te he dicho...</h2>
+
+        <div class="gift-box" id="giftBox">
+          <div class="gift-lid"></div>
+          <div class="gift-icon">📦</div>
+          <div class="gift-label">Haz clic para abrir</div>
+        </div>
+
+        <div class="letter-content" id="letterContent">
+          <div class="letter-title">💌 Para ti, Angelyne</div>
+          <div class="letter-text">
+          <p>
+            Hoy que cumples 21 años y quiero recordarte lo increíble,
+            hermosa y especial que eres for mii.
+          </p>
+
+          <p>
+            Gracias por llenar mis días de alegría, por tu forma de ser
+            y por hacer que cada momento contigo se sienta único.
+          </p>
+
+          <p>
+            Deseo que esta nueva etapa esté llena de sueños cumplidos,
+            con tus propósitos, sonrisas y momentos inolvidables.
+            Nunca olvides todo lo que vales.
+          </p>
+            <p>Gracias por existir, por ser tú, por ser <strong>Linda</strong>.</p>
+            <span class="final-message">"Mi mejor regalo eres tú."</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== NUEVA SECCIÓN 2: 21 RAZONES ===== -->
+    <section>
+      <div class="content">
+        <h2>❤️ 21 razones por las que te quiero</h2>
+
+        <div class="reasons-container" id="reasonsContainer">
+          <div class="reason-counter" id="reasonCounter">0 / 21</div>
+          <div class="reason-text" id="reasonText">Haz clic en el botón para comenzar</div>
+          <div class="reason-final" id="reasonFinal" style="display:none;"></div>
+        </div>
+
+        <button id="reasonButton">💫 Siguiente razón</button>
+      </div>
+    </section>
+
+    <!-- ===== NUEVA SECCIÓN 3: LÍNEA DEL TIEMPO ===== -->
+    <section>
+      <div class="content">
+        <h2>⏳ Nuestra línea del tiempo</h2>
+        <p style="color: #aaa; margin-bottom: 20px;">Momentos especiales que atesoro</p>
+
+        <div class="timeline" id="timeline">
+          <div class="timeline-item">
+            <span class="emoji">🌟</span>
+            <div class="date">Mayo</div>
+            <div class="event">El día que el andres te invitó y el 14 de mayo me escribiste para que te hiciera entrar al dejavu y ese mensajito dije um hoy le mucho okno</div>
+            <div><img style="width: 100%; height: auto;" src="mayo.jpeg" alt="Mayo"></div>
+          </div>
+          </div>
+          <div class="timeline-item">
+            <span class="emoji">💬</span>
+            <div class="date">Junio</div>
+            <div class="event">Salimos al centro a criticar enamorados y al Mr.Joy</div>
+            <div><img style="width: 100%; height: auto;" src="Junio.jpeg" alt="Junio"></div>
+          </div>
+          <div class="timeline-item">
+            <span class="emoji">📸</span>
+            <div class="date">Julio</div>
+            <div class="event">Nos dedicamos nuestras canciones favoritas</div>
+            <div><img style="width: 100%; height: auto;" src="Julio.jpeg" alt="Julio"></div>
+          </div>
+          <div class="timeline-item">
+            <span class="emoji">❤️</span>
+            <div class="date">Agosto</div>
+            <div class="event">Aunque según tú no me conoces me diste mi drogra fav y salimos al cine.</div>
+            <div><img style="width: 100%; height: auto;" src="Agosto.jpeg" alt="Agosto"></div>
+          </div>
+          <div class="timeline-item">
+            <span class="emoji">🎂</span>
+            <div class="date">Hoy 07/08/2026</div>
+            <div class="event">¡Tus 21 años! 🎉</div>
+            <div class="event">esta es la foto que elimine jiji amarrado ando yo :3</div>
+            <div><img style="width: 100%; height: auto;" src="Lyna.png" alt="Hoy"></div>
+            <center><button class="btn-download" id="btnDownload">📥 Descargar foto</button>
+            </button></center>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== NUEVA SECCIÓN 4: RULETA DE CUMPLIDOS ===== -->
+    <section>
+      <div class="content">
+        <h2>🎡 Ruleta de cumplidos</h2>
+        <p style="color: #aaa; margin-bottom: 20px;">Gira y descubre lo que pienso de ti</p>
+
+        <div class="wheel-container">
+          <div class="wheel" id="wheel">
+            <div class="pointer">▼</div>
+          </div>
+        </div>
+        <div class="wheel-compliment" id="wheelCompliment">Gira la ruleta</div>
+        <button id="wheelButton">🎰 Girar ruleta</button>
+      </div>
+    </section>
+
+    <!-- ===== NUEVA SECCIÓN 5: VELAS DIGITALES ===== -->
+    <section>
+      <div class="content">
+        <h2>🕯️ 21 velas digitales</h2>
+        <p style="color: #aaa; margin-bottom: 20px;">Apaga cada vela y pide un deseo</p>
+
+        <div class="candles-container" id="candlesContainer"></div>
+        <div class="candle-wish" id="candleWish">Haz clic en una vela para apagarla</div>
+      </div>
+           <button id="fireButton">
+          🎸 Abrir canción 💗
+    </button>
+     <div class="candle-wish" id="candleWish">Otro día salimos a festejar T.Q.M y que cumplas muchos años masss</div>
+    </section>
+
+    <!-- MODAL BROMITA -->
+    <div class="modal-overlay" id="modalDownload">
+    <div class="modal-box">
+        <div class="emoji-big">😏</div>
+        <h3>¡Ja! No tan rápido</h3>
+        <p>
+        Para tener la foto me la tienes que pedir por WhatsApp 😉<br />
+        <small style="color: #888;">(es broma... pero no tanto)</small>
+        </p>
+        <a href="#" class="btn-whatsapp" id="whatsappLink">
+        💬 Pedir por WhatsApp
+        </a>
+        <br />
+        <button class="btn-close-modal" id="closeModal">Cerrar</button>
+    </div>
+    </div>
+
+  </main>
+  <script>
+    // ======================= CONFIGURACIÓN =======================
+    const NOMBRE = "Angelyne";
+    document.getElementById("nameHero").textContent = NOMBRE;
+
+    // ======================= CANVAS =======================
+    const particleCanvas = document.getElementById("particles");
+    const particleCtx = particleCanvas.getContext("2d");
+
+    const fireworksCanvas = document.getElementById("fireworks");
+    const fireworksCtx = fireworksCanvas.getContext("2d");
+
+    let particles = [];
+    let fireworks = [];
+    let feuerMode = false;
+    let feuerTimeout = null;
+
+    function resizeCanvas(canvas, context) {
+      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = window.innerWidth * ratio;
+      canvas.height = window.innerHeight * ratio;
+      canvas.style.width = window.innerWidth + "px";
+      canvas.style.height = window.innerHeight + "px";
+      context.setTransform(ratio, 0, 0, ratio, 0, 0);
+    }
+
+    function resizeAll() {
+      resizeCanvas(particleCanvas, particleCtx);
+      resizeCanvas(fireworksCanvas, fireworksCtx);
+      createParticles();
+    }
+
+    // ======================= PARTÍCULAS (chispas de fondo) =======================
+    function createParticles() {
+      particles = [];
+      const count = feuerMode ? 220 : 140;
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * window.innerHeight,
+          size: Math.random() * 3 + 0.5,
+          speed: Math.random() * 2.2 + 0.4,
+          drift: Math.random() * 1.8 - 0.9,
+          alpha: Math.random() * 0.8 + 0.2,
+          flicker: Math.random() * 0.1 + 0.05,
+          color: Math.random() > 0.35 ? "#ff7b00" : "#ffd35c"
+        });
+      }
+    }
+
+    function animateParticles() {
+      particleCtx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+      particles.forEach((p) => {
+        p.alpha += (Math.random() - 0.5) * p.flicker * 0.2;
+        p.alpha = Math.min(1, Math.max(0.15, p.alpha));
+
+        particleCtx.globalAlpha = p.alpha;
+        particleCtx.fillStyle = p.color;
+        particleCtx.shadowBlur = 15;
+        particleCtx.shadowColor = p.color;
+
+        particleCtx.beginPath();
+        particleCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        particleCtx.fill();
+
+        p.y += p.speed * (feuerMode ? 1.8 : 1);
+        p.x += p.drift * (feuerMode ? 1.5 : 1);
+
+        if (p.y > window.innerHeight + 10) {
+          p.y = -10;
+          p.x = Math.random() * window.innerWidth;
+        }
+        if (p.x < -10 || p.x > window.innerWidth + 10) {
+          p.drift *= -1;
+        }
+      });
+
+      requestAnimationFrame(animateParticles);
+    }
+
+    // ======================= FUEGOS ARTIFICIALES =======================
+    function createFirework(x, y, burstCount = 95, colors = null) {
+      const defaultColors = ["#ff1515", "#ff7b00", "#ffd34e", "#ffffff", "#ff00aa"];
+      const palette = colors || defaultColors;
+
+      for (let i = 0; i < burstCount; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 8 + 2;
+        fireworks.push({
+          x: x,
+          y: y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          life: 1,
+          size: Math.random() * 3 + 1,
+          color: palette[Math.floor(Math.random() * palette.length)],
+          trail: []
+        });
+      }
+    }
+
+    function animateFireworks() {
+      fireworksCtx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+      fireworks.forEach((spark, index) => {
+        if (spark.life > 0.3) {
+          fireworksCtx.globalAlpha = spark.life * 0.3;
+          fireworksCtx.fillStyle = spark.color;
+          fireworksCtx.shadowBlur = 20;
+          fireworksCtx.shadowColor = spark.color;
+          fireworksCtx.beginPath();
+          fireworksCtx.arc(spark.x - spark.vx * 0.5, spark.y - spark.vy * 0.5, spark.size * 0.6, 0, Math.PI * 2);
+          fireworksCtx.fill();
+        }
+
+        fireworksCtx.globalAlpha = spark.life;
+        fireworksCtx.fillStyle = spark.color;
+        fireworksCtx.shadowBlur = 25;
+        fireworksCtx.shadowColor = spark.color;
+
+        fireworksCtx.beginPath();
+        fireworksCtx.arc(spark.x, spark.y, spark.size, 0, Math.PI * 2);
+        fireworksCtx.fill();
+
+        spark.x += spark.vx;
+        spark.y += spark.vy;
+        spark.vy += 0.08;
+        spark.life -= 0.012;
+
+        if (spark.life <= 0) {
+          fireworks.splice(index, 1);
+        }
+      });
+
+      requestAnimationFrame(animateFireworks);
+    }
+
+    // ======================= SONIDO =======================
+    function distortionSound() {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContext) return;
+
+      const audio = new AudioContext();
+      const oscillator = audio.createOscillator();
+      const gain = audio.createGain();
+      const distortion = audio.createWaveShaper();
+
+      distortion.curve = new Float32Array([-1, -0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1]);
+      distortion.curve = distortion.curve.map(v => Math.sign(v) * Math.pow(Math.abs(v), 0.5));
+
+      oscillator.type = "sawtooth";
+      oscillator.frequency.setValueAtTime(120, audio.currentTime);
+      oscillator.frequency.exponentialRampToValueAtTime(40, audio.currentTime + 0.6);
+
+      gain.gain.setValueAtTime(0.15, audio.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audio.currentTime + 0.6);
+
+      oscillator.connect(distortion);
+      distortion.connect(gain);
+      gain.connect(audio.destination);
+
+      oscillator.start();
+      oscillator.stop(audio.currentTime + 0.6);
+    }
+
+    // ======================= FUEGOS EN CASCADA =======================
+    function fireworkCascade(count = 6) {
+      for (let i = 0; i < count; i++) {
+        setTimeout(() => {
+          const x = Math.random() * window.innerWidth * 0.8 + window.innerWidth * 0.1;
+          const y = Math.random() * window.innerHeight * 0.5 + 60;
+          const extraColors = i % 2 === 0
+            ? ["#ff1515", "#ff7b00", "#ffd34e", "#ffffff"]
+            : ["#ff00aa", "#ff1515", "#ff7b00", "#ffffff"];
+          createFirework(x, y, 110, extraColors);
+        }, i * 220);
+      }
+    }
+
+    // ======================= MODO FEUER =======================
+    function activateFeuerMode() {
+      if (feuerTimeout) clearTimeout(feuerTimeout);
+
+      feuerMode = true;
+      document.getElementById("modeFeuer").classList.add("active");
+      createParticles();
+
+      for (let i = 0; i < 12; i++) {
+        setTimeout(() => {
+          const x = Math.random() * window.innerWidth * 0.9 + window.innerWidth * 0.05;
+          const y = Math.random() * window.innerHeight * 0.5 + 50;
+          const colors = ["#ff1515", "#ff7b00", "#ffd34e", "#ffffff", "#ff00aa", "#00ffff"];
+          createFirework(x, y, 130, colors);
+        }, i * 300);
+      }
+
+      distortionSound();
+
+      feuerTimeout = setTimeout(() => {
+        feuerMode = false;
+        document.getElementById("modeFeuer").classList.remove("active");
+        createParticles();
+      }, 6000);
+    }
+
+    // ======================= CONTADOR =======================
+    const counter = document.getElementById("counter");
+    const counterBox = document.getElementById("counterBox");
+    let counterStarted = false;
+    let counterDone = false;
+
+    function startCounter() {
+      if (counterStarted) return;
+      counterStarted = true;
+
+      let number = 0;
+      const interval = setInterval(() => {
+        number++;
+        counter.textContent = String(number).padStart(2, "0");
+
+        if (number === 21) {
+          clearInterval(interval);
+          counterDone = true;
+          counter.classList.add("done");
+          counterBox.classList.add("reached");
+          distortionSound();
+          fireworkCascade(8);
+        }
+      }, 100);
+    }
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && !counterStarted) {
+        startCounter();
+      }
+    }, { threshold: 0.5 });
+
+    counterObserver.observe(counterBox);
+
+    // ======================= INTERACCIONES ORIGINALES =======================
+
+    // Botón de Spotify
+    document.getElementById("fireButton").addEventListener("click", () => {
+      const flash = document.getElementById('redFlash');
+      flash.classList.remove('active');
+      void flash.offsetWidth;
+      flash.classList.add('active');
+
+      distortionSound();
+
+      const btn = document.getElementById('fireButton');
+      btn.style.transform = 'scale(0.9)';
+      setTimeout(() => btn.style.transform = '', 200);
+
+      const spotifyUrl = 'https://open.spotify.com/intl-es/track/6tu2FHuKL9C8pwNrityweQ?si=083ee3cf332747fb';
+      setTimeout(() => {
+        window.open(spotifyUrl, '_blank');
+      }, 400);
+    });
+
+    // Clic en título
+    document.getElementById("glitchTitle").addEventListener("click", function() {
+      this.style.animation = "none";
+      this.style.transform = "skew(10deg, 5deg) scale(1.05)";
+      this.style.color = "#ff0000";
+      setTimeout(() => {
+        this.style.transform = "skew(-10deg, -5deg) scale(0.95)";
+        this.style.color = "#ffaa00";
+      }, 100);
+      setTimeout(() => {
+        this.style.transform = "";
+        this.style.color = "";
+        this.style.animation = "glitch 2.5s infinite";
+      }, 300);
+
+      const rect = this.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      for (let i = 0; i < 3; i++) {
+        setTimeout(() => {
+          createFirework(
+            cx + (Math.random() - 0.5) * 200,
+            cy + (Math.random() - 0.5) * 100
+          );
+        }, i * 150);
+      }
+      distortionSound();
+    });
+
+    // Easter egg FEUER
+    const secretInput = document.getElementById("secretInput");
+    const hiddenMessage = document.getElementById("hiddenMessage");
+    const redFlash = document.getElementById("redFlash");
+
+    secretInput.addEventListener("input", () => {
+      const value = secretInput.value.toUpperCase();
+      if (value === "FEUER") {
+        hiddenMessage.style.display = "block";
+        redFlash.classList.remove("active");
+        void redFlash.offsetWidth;
+        redFlash.classList.add("active");
+        activateFeuerMode();
+        secretInput.value = "";
+        setTimeout(() => {
+          hiddenMessage.style.display = "none";
+        }, 3000);
+      }
+    });
+
+    // ======================= NUEVA FUNCIÓN: ABRIR REGALO =======================
+    const giftBox = document.getElementById('giftBox');
+    const letterContent = document.getElementById('letterContent');
+    let giftOpened = false;
+
+    giftBox.addEventListener('click', () => {
+      if (giftOpened) return;
+      giftOpened = true;
+
+      // Abrir la caja
+      giftBox.classList.add('opened');
+      giftBox.querySelector('.gift-label').textContent = '🎉 ¡Abierto!';
+
+      // Generar humo y chispas (simulado con partículas extra)
+      for (let i = 0; i < 20; i++) {
+        setTimeout(() => {
+          const x = giftBox.getBoundingClientRect().left + giftBox.offsetWidth / 2 + (Math.random() - 0.5) * 100;
+          const y = giftBox.getBoundingClientRect().top + (Math.random() - 0.5) * 50;
+          createFirework(x, y, 30, ['#ffd700', '#ffffff', '#ff7b00']);
+        }, i * 80);
+      }
+
+      distortionSound();
+
+      // Mostrar la carta después de un momento
+      setTimeout(() => {
+        letterContent.classList.add('show');
+        letterContent.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 800);
+    });
+
+    // ======================= NUEVA FUNCIÓN: 21 RAZONES =======================
+    const reasons = [
+      "Porque haces mis días mejores.",
+      "Porque tienes una forma única de ser.",
+      "Porque admiro tu fuerza.",
+      "Porque contigo todo se siente diferente.",
+      "Porque eres mi persona especial.",
+      "Porque tu sonrisa ilumina mi mundo.",
+      "Porque siempre sabes cómo hacerme sentir bien.",
+      "Porque eres increíblemente auténtica.",
+      "Porque tu voz es mi canción favorita.",
+      "Porque tienes un corazón gigante.",
+      "Porque cada día contigo es una aventura.",
+      "Porque me haces querer ser mejor persona.",
+      "Porque tus abrazos son mi lugar seguro.",
+      "Porque eres talentosa y brillante.",
+      "Porque tu risa contagia alegría.",
+      "Porque eres fuerte incluso cuando no lo crees.",
+      "Porque siempre encuentras la forma de ayudar.",
+      "Porque tus ojos dicen más que mil palabras.",
+      "Porque eres mi inspiración diaria.",
+      "Porque contigo el tiempo vuela.",
+      "Porque eres tú, y eso es suficiente."
+    ];
+
+    let reasonIndex = 0;
+    const reasonCounterEl = document.getElementById('reasonCounter');
+    const reasonTextEl = document.getElementById('reasonText');
+    const reasonFinalEl = document.getElementById('reasonFinal');
+    const reasonButton = document.getElementById('reasonButton');
+
+    reasonButton.addEventListener('click', () => {
+      if (reasonIndex < reasons.length) {
+        reasonCounterEl.textContent = `${reasonIndex + 1} / 21`;
+        reasonTextEl.textContent = reasons[reasonIndex];
+        reasonIndex++;
+
+        if (reasonIndex === reasons.length) {
+          reasonButton.textContent = '✨ Mensaje final ✨';
+          reasonFinalEl.style.display = 'block';
+          reasonFinalEl.textContent = '"Y aunque escribiera mil razones, ninguna alcanzaría para explicar todo lo que siento por ti."';
+          distortionSound();
+          fireworkCascade(6);
+        }
+      } else {
+        // Ya mostró todas
+        reasonTextEl.textContent = '💖 Ya sabes todas las razones... ¡y aún faltan más!';
+      }
+    });
+
+    // ======================= NUEVA FUNCIÓN: RULETA DE CUMPLIDOS =======================
+    const compliments = [
+      "Eres fuerte como el metal.",
+      "Tu sonrisa enciende la habitación.",
+      "Eres increíblemente especial.",
+      "Tienes un corazón de oro.",
+      "Eres más brillante que el oro.",
+      "Tu pasión es contagiosa.",
+      "Eres única en tu especie.",
+      "Tu mirada dice todo.",
+      "Eres mi persona favorita.",
+      "Nunca dejas de sorprenderme.",
+      "Eres arte puro.",
+      "Tu energía es magnética."
+    ];
+
+    let wheelAngle = 0;
+    const wheel = document.getElementById('wheel');
+    const wheelCompliment = document.getElementById('wheelCompliment');
+    const wheelButton = document.getElementById('wheelButton');
+
+    wheelButton.addEventListener('click', () => {
+      const randomIndex = Math.floor(Math.random() * compliments.length);
+      const angle = Math.floor(Math.random() * 360) + 720; // Vueltas extra
+      wheelAngle += angle;
+      wheel.style.transform = `rotate(${wheelAngle}deg)`;
+
+      setTimeout(() => {
+        wheelCompliment.textContent = `✨ ${compliments[randomIndex]} ✨`;
+        distortionSound();
+      }, 400);
+    });
+
+    // ======================= NUEVA FUNCIÓN: VELAS DIGITALES =======================
+    const candlesContainer = document.getElementById('candlesContainer');
+    const candleWish = document.getElementById('candleWish');
+    let candlesLit = 21;
+    const wishes = [
+      "Que siempre tengas salud.",
+      "Que nunca te falte una sonrisa.",
+      "Que tus sueños se hagan realidad.",
+      "Que el amor te acompañe siempre.",
+      "Que encuentres felicidad en lo pequeño.",
+      "Que tu camino esté lleno de luz.",
+      "Que tengas fuerzas para seguir.",
+      "Que nunca pierdas tu esencia.",
+      "Que la vida te sonría.",
+      "Que tengas amigos verdaderos.",
+      "Que cada día sea una aventura.",
+      "Que el éxito te encuentre.",
+      "Que el amor propio te guíe.",
+      "Que tengas paz interior.",
+      "Que la música nunca deje de sonar.",
+      "Que tus pasos te lleven lejos.",
+      "Que encuentres tu lugar en el mundo.",
+      "Que nunca dejes de soñar.",
+      "Que la felicidad te persiga.",
+      "Que el amor sea tu motor.",
+      "Que todo lo bueno te llegue."
+    ];
+    let wishIndex = 0;
+
+    for (let i = 1; i <= 21; i++) {
+      const candle = document.createElement('div');
+      candle.className = 'candle lit';
+      candle.dataset.index = i;
+      candle.addEventListener('click', () => {
+        if (!candle.classList.contains('lit')) return;
+        candle.classList.remove('lit');
+        candle.classList.add('extinguished');
+        candlesLit--;
+
+        if (wishIndex < wishes.length) {
+          candleWish.textContent = `🕯️ Deseo ${i}: ${wishes[wishIndex]}`;
+          wishIndex++;
+          distortionSound();
+        }
+
+        if (candlesLit === 0) {
+          candleWish.textContent = '🎉 ¡Todos los deseos están hechos! ¡Que todos se cumplan!';
+          fireworkCascade(8);
+          distortionSound();
+        }
+      });
+      candlesContainer.appendChild(candle);
+    }
+
+    // ======================= INICIALIZACIÓN =======================
+    window.addEventListener("resize", resizeAll);
+
+    window.addEventListener("load", () => {
+    resizeAll();
+    animateParticles();
+    animateFireworks();
+    setTimeout(() => {
+        if (!counterDone) {
+        fireworkCascade(4);
+        }
+    }, 5000);
+    });
+
+    setTimeout(resizeAll, 200);
+
+        // ======================= BOTÓN DESCARGA (BROMA) =======================
+    const btnDownload = document.getElementById('btnDownload');
+    const modalDownload = document.getElementById('modalDownload');
+    const closeModal = document.getElementById('closeModal');
+    const whatsappLink = document.getElementById('whatsappLink');
+
+    // 👇 CAMBIA ESTE NÚMERO POR EL DE ELLA O EL TUYO (con código de país, sin +)
+    const whatsappNumber = '593979209219'; 
+    const mensajeWhatsApp = 'Me pasas la foto xfis';
+
+    // Abrir modal al hacer clic en "Descargar foto"
+    btnDownload.addEventListener('click', () => {
+    modalDownload.classList.add('active');
+    // Construir enlace de WhatsApp
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(mensajeWhatsApp)}`;
+    whatsappLink.href = url;
+    });
+
+    // Cerrar modal con el botón "Cerrar"
+    closeModal.addEventListener('click', () => {
+    modalDownload.classList.remove('active');
+    });
+
+    // Cerrar modal haciendo clic fuera del cuadro
+    modalDownload.addEventListener('click', (e) => {
+    if (e.target === modalDownload) {
+        modalDownload.classList.remove('active');
+    }
+    });
+  </script>
+</body>
+</html>
