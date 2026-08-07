@@ -43,18 +43,20 @@
         linear-gradient(180deg, #090909 0%, #000000 75%);
     }
 
-    /* Textura de humo animada */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      opacity: 0.15;
-      background-image:
-        repeating-radial-gradient(circle at 0 0, transparent 0 5px, #777 6px 7px);
-      mix-blend-mode: screen;
-      animation: smokeDrift 30s linear infinite;
+    /* Textura de humo animada - solo en desktop para rendimiento */
+    @media (min-width: 768px) {
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.15;
+        background-image:
+          repeating-radial-gradient(circle at 0 0, transparent 0 5px, #777 6px 7px);
+        mix-blend-mode: screen;
+        animation: smokeDrift 30s linear infinite;
+      }
     }
 
     @keyframes smokeDrift {
@@ -89,53 +91,55 @@
       z-index: 10;
     }
 
-    /* Láseres mejorados */
-    .laser-container {
-      position: fixed;
-      inset: 0;
-      z-index: 2;
-      pointer-events: none;
-      overflow: hidden;
-    }
+    /* Láseres - solo en desktop para rendimiento */
+    @media (min-width: 768px) {
+      .laser-container {
+        position: fixed;
+        inset: 0;
+        z-index: 2;
+        pointer-events: none;
+        overflow: hidden;
+      }
 
-    .laser {
-      position: absolute;
-      width: 150vw;
-      height: 3px;
-      left: -25vw;
-      opacity: 0.2;
-      filter: blur(3px);
-      background: linear-gradient(90deg, transparent, var(--red), white, var(--red), transparent);
-      animation: laserMove 8s ease-in-out infinite alternate;
-      box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
-    }
+      .laser {
+        position: absolute;
+        width: 150vw;
+        height: 3px;
+        left: -25vw;
+        opacity: 0.2;
+        filter: blur(3px);
+        background: linear-gradient(90deg, transparent, var(--red), white, var(--red), transparent);
+        animation: laserMove 8s ease-in-out infinite alternate;
+        box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+      }
 
-    .laser:nth-of-type(1) {
-      top: 15%;
-      animation-duration: 10s;
-      animation-delay: -2s;
-    }
-    .laser:nth-of-type(2) {
-      top: 45%;
-      animation-duration: 12s;
-      animation-delay: -5s;
-      background: linear-gradient(90deg, transparent, var(--gold), white, var(--gold), transparent);
-      height: 4px;
-    }
-    .laser:nth-of-type(3) {
-      top: 75%;
-      animation-duration: 9s;
-      animation-delay: -8s;
-      background: linear-gradient(90deg, transparent, #ff00aa, white, #ff00aa, transparent);
-      height: 2px;
-      opacity: 0.15;
-    }
+      .laser:nth-of-type(1) {
+        top: 15%;
+        animation-duration: 10s;
+        animation-delay: -2s;
+      }
+      .laser:nth-of-type(2) {
+        top: 45%;
+        animation-duration: 12s;
+        animation-delay: -5s;
+        background: linear-gradient(90deg, transparent, var(--gold), white, var(--gold), transparent);
+        height: 4px;
+      }
+      .laser:nth-of-type(3) {
+        top: 75%;
+        animation-duration: 9s;
+        animation-delay: -8s;
+        background: linear-gradient(90deg, transparent, #ff00aa, white, #ff00aa, transparent);
+        height: 2px;
+        opacity: 0.15;
+      }
 
-    @keyframes laserMove {
-      0% { transform: translateX(-10vw) rotate(-3deg); opacity: 0.1; }
-      30% { opacity: 0.25; }
-      70% { opacity: 0.2; }
-      100% { transform: translateX(20vw) rotate(4deg); opacity: 0.05; }
+      @keyframes laserMove {
+        0% { transform: translateX(-10vw) rotate(-3deg); opacity: 0.1; }
+        30% { opacity: 0.25; }
+        70% { opacity: 0.2; }
+        100% { transform: translateX(20vw) rotate(4deg); opacity: 0.05; }
+      }
     }
 
     section {
@@ -483,14 +487,6 @@
 
     .mode-feuer.active {
       opacity: 1;
-    }
-
-    @media (max-width: 600px) {
-      section { padding: 55px 15px; }
-      .match-area { height: 250px; }
-      .match-stick { width: 190px; }
-      .message { padding: 25px 18px; }
-      .eyebrow { font-size: 0.65rem; letter-spacing: 3px; }
     }
 
     /* ===== NUEVAS SECCIONES AGREGADAS ===== */
@@ -977,7 +973,7 @@
   <div class="mode-feuer" id="modeFeuer"></div>
 
   <main>
-    <!-- SECCIÓN 1: HERO (tu código original intacto) -->
+    <!-- SECCIÓN 1: HERO -->
     <section class="hero">
       <div>
         <div class="eyebrow">
@@ -1012,7 +1008,7 @@
       </div>
     </section>
 
-    <!-- SECCIÓN 2: CONTENIDO ORIGINAL (intacto) -->
+    <!-- SECCIÓN 2: CONTENIDO ORIGINAL -->
     <section>
       <div class="content">
         <h2>Te quiero muchísimo</h2>
@@ -1035,8 +1031,6 @@
 
           <div class="counter" id="counter">00</div>
         </div>
-
-       
 
         <div class="secret">
           <input
@@ -1119,7 +1113,6 @@
             <div class="event">El día que el andres te invitó y el 14 de mayo me escribiste para que te hiciera entrar al dejavu y ese mensajito dije um hoy le mucho okno</div>
             <div><img style="width: 100%; height: auto;" src="mayo.jpeg" alt="Mayo"></div>
           </div>
-          </div>
           <div class="timeline-item">
             <span class="emoji">💬</span>
             <div class="date">Junio</div>
@@ -1144,8 +1137,7 @@
             <div class="event">¡Tus 21 años! 🎉</div>
             <div class="event">esta es la foto que elimine jiji amarrado ando yo :3</div>
             <div><img style="width: 100%; height: auto;" src="Lyna.png" alt="Hoy"></div>
-            <center><button class="btn-download" id="btnDownload">📥 Descargar foto</button>
-            </button></center>
+            <center><button class="btn-download" id="btnDownload">📥 Descargar foto</button></center>
           </div>
         </div>
       </div>
@@ -1176,10 +1168,10 @@
         <div class="candles-container" id="candlesContainer"></div>
         <div class="candle-wish" id="candleWish">Haz clic en una vela para apagarla</div>
       </div>
-           <button id="fireButton">
-          🎸 Abrir canción 💗
-    </button>
-     <div class="candle-wish" id="candleWish">Otro día salimos a festejar T.Q.M y que cumplas muchos años masss</div>
+      <button id="fireButton">
+        🎸 Abrir canción 💗
+      </button>
+      <div class="candle-wish">Otro día salimos a festejar T.Q.M y que cumplas muchos años masss</div>
     </section>
 
     <!-- MODAL BROMITA -->
@@ -1191,7 +1183,7 @@
         Para tener la foto me la tienes que pedir por WhatsApp 😉<br />
         <small style="color: #888;">(es broma... pero no tanto)</small>
         </p>
-        <a href="#" class="btn-whatsapp" id="whatsappLink">
+        <a href="#" class="btn-whatsapp" id="whatsappLink" target="_blank">
         💬 Pedir por WhatsApp
         </a>
         <br />
@@ -1205,6 +1197,9 @@
     const NOMBRE = "Angelyne";
     document.getElementById("nameHero").textContent = NOMBRE;
 
+    // Detectar si es móvil por ancho de pantalla
+    const isMobile = window.innerWidth < 768;
+
     // ======================= CANVAS =======================
     const particleCanvas = document.getElementById("particles");
     const particleCtx = particleCanvas.getContext("2d");
@@ -1216,6 +1211,10 @@
     let fireworks = [];
     let feuerMode = false;
     let feuerTimeout = null;
+
+    // Control de frames para reducir carga en móviles
+    let frameSkip = 0;
+    const FRAME_SKIP = isMobile ? 2 : 1; // Saltar frames en móvil
 
     function resizeCanvas(canvas, context) {
       const ratio = Math.min(window.devicePixelRatio || 1, 2);
@@ -1232,42 +1231,59 @@
       createParticles();
     }
 
-    // ======================= PARTÍCULAS (chispas de fondo) =======================
+    // ======================= PARTÍCULAS =======================
     function createParticles() {
       particles = [];
-      const count = feuerMode ? 220 : 140;
+      // Reducir cantidad en móvil
+      const count = feuerMode ? (isMobile ? 100 : 220) : (isMobile ? 60 : 140);
       for (let i = 0; i < count; i++) {
         particles.push({
           x: Math.random() * window.innerWidth,
           y: Math.random() * window.innerHeight,
-          size: Math.random() * 3 + 0.5,
-          speed: Math.random() * 2.2 + 0.4,
-          drift: Math.random() * 1.8 - 0.9,
-          alpha: Math.random() * 0.8 + 0.2,
-          flicker: Math.random() * 0.1 + 0.05,
+          size: Math.random() * 2.5 + 0.5, // reducido tamaño
+          speed: Math.random() * 1.5 + 0.3, // más lento en móvil
+          drift: Math.random() * 1.2 - 0.6,
+          alpha: Math.random() * 0.7 + 0.2,
+          flicker: Math.random() * 0.08 + 0.02,
           color: Math.random() > 0.35 ? "#ff7b00" : "#ffd35c"
         });
       }
     }
 
+    let particlesPaused = false;
+
     function animateParticles() {
+      if (particlesPaused) {
+        requestAnimationFrame(animateParticles);
+        return;
+      }
+
+      // Saltar frames en móvil
+      if (isMobile) {
+        frameSkip++;
+        if (frameSkip % FRAME_SKIP !== 0) {
+          requestAnimationFrame(animateParticles);
+          return;
+        }
+      }
+
       particleCtx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
       particles.forEach((p) => {
-        p.alpha += (Math.random() - 0.5) * p.flicker * 0.2;
+        p.alpha += (Math.random() - 0.5) * p.flicker * 0.15;
         p.alpha = Math.min(1, Math.max(0.15, p.alpha));
 
         particleCtx.globalAlpha = p.alpha;
         particleCtx.fillStyle = p.color;
-        particleCtx.shadowBlur = 15;
+        particleCtx.shadowBlur = isMobile ? 5 : 15; // menos sombra en móvil
         particleCtx.shadowColor = p.color;
 
         particleCtx.beginPath();
         particleCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         particleCtx.fill();
 
-        p.y += p.speed * (feuerMode ? 1.8 : 1);
-        p.x += p.drift * (feuerMode ? 1.5 : 1);
+        p.y += p.speed * (feuerMode ? 1.4 : 1);
+        p.x += p.drift * (feuerMode ? 1.2 : 1);
 
         if (p.y > window.innerHeight + 10) {
           p.y = -10;
@@ -1281,35 +1297,42 @@
       requestAnimationFrame(animateParticles);
     }
 
-    // ======================= FUEGOS ARTIFICIALES =======================
+    // ======================= FUEGOS ARTIFICIALES (optimizados) =======================
     function createFirework(x, y, burstCount = 95, colors = null) {
+      // Reducir cantidad en móvil
+      const actualBurst = isMobile ? Math.floor(burstCount * 0.5) : burstCount;
       const defaultColors = ["#ff1515", "#ff7b00", "#ffd34e", "#ffffff", "#ff00aa"];
       const palette = colors || defaultColors;
 
-      for (let i = 0; i < burstCount; i++) {
+      for (let i = 0; i < actualBurst; i++) {
         const angle = Math.random() * Math.PI * 2;
-        const speed = Math.random() * 8 + 2;
+        const speed = Math.random() * (isMobile ? 5 : 8) + (isMobile ? 1.5 : 2);
         fireworks.push({
           x: x,
           y: y,
           vx: Math.cos(angle) * speed,
           vy: Math.sin(angle) * speed,
           life: 1,
-          size: Math.random() * 3 + 1,
+          size: Math.random() * (isMobile ? 2 : 3) + (isMobile ? 0.5 : 1),
           color: palette[Math.floor(Math.random() * palette.length)],
-          trail: []
         });
       }
     }
 
     function animateFireworks() {
+      if (particlesPaused) {
+        requestAnimationFrame(animateFireworks);
+        return;
+      }
+
       fireworksCtx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
       fireworks.forEach((spark, index) => {
-        if (spark.life > 0.3) {
+        // Estela reducida en móvil
+        if (spark.life > 0.3 && !isMobile) {
           fireworksCtx.globalAlpha = spark.life * 0.3;
           fireworksCtx.fillStyle = spark.color;
-          fireworksCtx.shadowBlur = 20;
+          fireworksCtx.shadowBlur = 10;
           fireworksCtx.shadowColor = spark.color;
           fireworksCtx.beginPath();
           fireworksCtx.arc(spark.x - spark.vx * 0.5, spark.y - spark.vy * 0.5, spark.size * 0.6, 0, Math.PI * 2);
@@ -1318,7 +1341,7 @@
 
         fireworksCtx.globalAlpha = spark.life;
         fireworksCtx.fillStyle = spark.color;
-        fireworksCtx.shadowBlur = 25;
+        fireworksCtx.shadowBlur = isMobile ? 10 : 25;
         fireworksCtx.shadowColor = spark.color;
 
         fireworksCtx.beginPath();
@@ -1327,8 +1350,8 @@
 
         spark.x += spark.vx;
         spark.y += spark.vy;
-        spark.vy += 0.08;
-        spark.life -= 0.012;
+        spark.vy += 0.06;
+        spark.life -= isMobile ? 0.02 : 0.012; // se apagan más rápido en móvil
 
         if (spark.life <= 0) {
           fireworks.splice(index, 1);
@@ -1343,44 +1366,49 @@
       const AudioContext = window.AudioContext || window.webkitAudioContext;
       if (!AudioContext) return;
 
-      const audio = new AudioContext();
-      const oscillator = audio.createOscillator();
-      const gain = audio.createGain();
-      const distortion = audio.createWaveShaper();
+      try {
+        const audio = new AudioContext();
+        const oscillator = audio.createOscillator();
+        const gain = audio.createGain();
+        const distortion = audio.createWaveShaper();
 
-      distortion.curve = new Float32Array([-1, -0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1]);
-      distortion.curve = distortion.curve.map(v => Math.sign(v) * Math.pow(Math.abs(v), 0.5));
+        distortion.curve = new Float32Array([-1, -0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1]);
+        distortion.curve = distortion.curve.map(v => Math.sign(v) * Math.pow(Math.abs(v), 0.5));
 
-      oscillator.type = "sawtooth";
-      oscillator.frequency.setValueAtTime(120, audio.currentTime);
-      oscillator.frequency.exponentialRampToValueAtTime(40, audio.currentTime + 0.6);
+        oscillator.type = "sawtooth";
+        oscillator.frequency.setValueAtTime(120, audio.currentTime);
+        oscillator.frequency.exponentialRampToValueAtTime(40, audio.currentTime + 0.4);
 
-      gain.gain.setValueAtTime(0.15, audio.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, audio.currentTime + 0.6);
+        gain.gain.setValueAtTime(0.12, audio.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audio.currentTime + 0.4);
 
-      oscillator.connect(distortion);
-      distortion.connect(gain);
-      gain.connect(audio.destination);
+        oscillator.connect(distortion);
+        distortion.connect(gain);
+        gain.connect(audio.destination);
 
-      oscillator.start();
-      oscillator.stop(audio.currentTime + 0.6);
+        oscillator.start();
+        oscillator.stop(audio.currentTime + 0.4);
+      } catch (e) {
+        // Silenciar errores de audio
+      }
     }
 
-    // ======================= FUEGOS EN CASCADA =======================
+    // ======================= FUEGOS EN CASCADA (optimizados) =======================
     function fireworkCascade(count = 6) {
-      for (let i = 0; i < count; i++) {
+      const actualCount = isMobile ? Math.min(count, 4) : count;
+      for (let i = 0; i < actualCount; i++) {
         setTimeout(() => {
           const x = Math.random() * window.innerWidth * 0.8 + window.innerWidth * 0.1;
           const y = Math.random() * window.innerHeight * 0.5 + 60;
           const extraColors = i % 2 === 0
             ? ["#ff1515", "#ff7b00", "#ffd34e", "#ffffff"]
             : ["#ff00aa", "#ff1515", "#ff7b00", "#ffffff"];
-          createFirework(x, y, 110, extraColors);
-        }, i * 220);
+          createFirework(x, y, isMobile ? 60 : 110, extraColors);
+        }, i * (isMobile ? 300 : 220));
       }
     }
 
-    // ======================= MODO FEUER =======================
+    // ======================= MODO FEUER (optimizado) =======================
     function activateFeuerMode() {
       if (feuerTimeout) clearTimeout(feuerTimeout);
 
@@ -1388,13 +1416,14 @@
       document.getElementById("modeFeuer").classList.add("active");
       createParticles();
 
-      for (let i = 0; i < 12; i++) {
+      const count = isMobile ? 6 : 12;
+      for (let i = 0; i < count; i++) {
         setTimeout(() => {
           const x = Math.random() * window.innerWidth * 0.9 + window.innerWidth * 0.05;
           const y = Math.random() * window.innerHeight * 0.5 + 50;
           const colors = ["#ff1515", "#ff7b00", "#ffd34e", "#ffffff", "#ff00aa", "#00ffff"];
-          createFirework(x, y, 130, colors);
-        }, i * 300);
+          createFirework(x, y, isMobile ? 70 : 130, colors);
+        }, i * (isMobile ? 400 : 300));
       }
 
       distortionSound();
@@ -1427,9 +1456,9 @@
           counter.classList.add("done");
           counterBox.classList.add("reached");
           distortionSound();
-          fireworkCascade(8);
+          fireworkCascade(isMobile ? 4 : 8);
         }
-      }, 100);
+      }, isMobile ? 150 : 100);
     }
 
     const counterObserver = new IntersectionObserver((entries) => {
@@ -1439,6 +1468,11 @@
     }, { threshold: 0.5 });
 
     counterObserver.observe(counterBox);
+
+    // ======================= PAUSAR ANIMACIONES CUANDO NO SE VE =======================
+    document.addEventListener('visibilitychange', () => {
+      particlesPaused = document.hidden;
+    });
 
     // ======================= INTERACCIONES ORIGINALES =======================
 
@@ -1479,11 +1513,12 @@
       const rect = this.getBoundingClientRect();
       const cx = rect.left + rect.width / 2;
       const cy = rect.top + rect.height / 2;
-      for (let i = 0; i < 3; i++) {
+      for (let i = 0; i < (isMobile ? 2 : 3); i++) {
         setTimeout(() => {
           createFirework(
             cx + (Math.random() - 0.5) * 200,
-            cy + (Math.random() - 0.5) * 100
+            cy + (Math.random() - 0.5) * 100,
+            isMobile ? 40 : 95
           );
         }, i * 150);
       }
@@ -1519,22 +1554,22 @@
       if (giftOpened) return;
       giftOpened = true;
 
-      // Abrir la caja
       giftBox.classList.add('opened');
       giftBox.querySelector('.gift-label').textContent = '🎉 ¡Abierto!';
 
-      // Generar humo y chispas (simulado con partículas extra)
-      for (let i = 0; i < 20; i++) {
+      // Chispas reducidas en móvil
+      const count = isMobile ? 10 : 20;
+      for (let i = 0; i < count; i++) {
         setTimeout(() => {
-          const x = giftBox.getBoundingClientRect().left + giftBox.offsetWidth / 2 + (Math.random() - 0.5) * 100;
-          const y = giftBox.getBoundingClientRect().top + (Math.random() - 0.5) * 50;
-          createFirework(x, y, 30, ['#ffd700', '#ffffff', '#ff7b00']);
+          const rect = giftBox.getBoundingClientRect();
+          const x = rect.left + rect.width / 2 + (Math.random() - 0.5) * 100;
+          const y = rect.top + (Math.random() - 0.5) * 50;
+          createFirework(x, y, isMobile ? 20 : 30, ['#ffd700', '#ffffff', '#ff7b00']);
         }, i * 80);
       }
 
       distortionSound();
 
-      // Mostrar la carta después de un momento
       setTimeout(() => {
         letterContent.classList.add('show');
         letterContent.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -1583,10 +1618,9 @@
           reasonFinalEl.style.display = 'block';
           reasonFinalEl.textContent = '"Y aunque escribiera mil razones, ninguna alcanzaría para explicar todo lo que siento por ti."';
           distortionSound();
-          fireworkCascade(6);
+          fireworkCascade(isMobile ? 4 : 6);
         }
       } else {
-        // Ya mostró todas
         reasonTextEl.textContent = '💖 Ya sabes todas las razones... ¡y aún faltan más!';
       }
     });
@@ -1614,7 +1648,7 @@
 
     wheelButton.addEventListener('click', () => {
       const randomIndex = Math.floor(Math.random() * compliments.length);
-      const angle = Math.floor(Math.random() * 360) + 720; // Vueltas extra
+      const angle = Math.floor(Math.random() * 360) + 720;
       wheelAngle += angle;
       wheel.style.transform = `rotate(${wheelAngle}deg)`;
 
@@ -1671,58 +1705,53 @@
 
         if (candlesLit === 0) {
           candleWish.textContent = '🎉 ¡Todos los deseos están hechos! ¡Que todos se cumplan!';
-          fireworkCascade(8);
+          fireworkCascade(isMobile ? 4 : 8);
           distortionSound();
         }
       });
       candlesContainer.appendChild(candle);
     }
 
-    // ======================= INICIALIZACIÓN =======================
-    window.addEventListener("resize", resizeAll);
-
-    window.addEventListener("load", () => {
-    resizeAll();
-    animateParticles();
-    animateFireworks();
-    setTimeout(() => {
-        if (!counterDone) {
-        fireworkCascade(4);
-        }
-    }, 5000);
-    });
-
-    setTimeout(resizeAll, 200);
-
-        // ======================= BOTÓN DESCARGA (BROMA) =======================
+    // ======================= BOTÓN DESCARGA (BROMA) =======================
     const btnDownload = document.getElementById('btnDownload');
     const modalDownload = document.getElementById('modalDownload');
     const closeModal = document.getElementById('closeModal');
     const whatsappLink = document.getElementById('whatsappLink');
 
-    // 👇 CAMBIA ESTE NÚMERO POR EL DE ELLA O EL TUYO (con código de país, sin +)
-    const whatsappNumber = '593979209219'; 
+    const whatsappNumber = '593979209219';
     const mensajeWhatsApp = 'Me pasas la foto xfis';
 
-    // Abrir modal al hacer clic en "Descargar foto"
     btnDownload.addEventListener('click', () => {
-    modalDownload.classList.add('active');
-    // Construir enlace de WhatsApp
-    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(mensajeWhatsApp)}`;
-    whatsappLink.href = url;
+      modalDownload.classList.add('active');
+      const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(mensajeWhatsApp)}`;
+      whatsappLink.href = url;
     });
 
-    // Cerrar modal con el botón "Cerrar"
     closeModal.addEventListener('click', () => {
-    modalDownload.classList.remove('active');
+      modalDownload.classList.remove('active');
     });
 
-    // Cerrar modal haciendo clic fuera del cuadro
     modalDownload.addEventListener('click', (e) => {
-    if (e.target === modalDownload) {
+      if (e.target === modalDownload) {
         modalDownload.classList.remove('active');
-    }
+      }
     });
+
+    // ======================= INICIALIZACIÓN =======================
+    window.addEventListener("resize", resizeAll);
+
+    window.addEventListener("load", () => {
+      resizeAll();
+      animateParticles();
+      animateFireworks();
+      setTimeout(() => {
+        if (!counterDone) {
+          fireworkCascade(isMobile ? 3 : 4);
+        }
+      }, 5000);
+    });
+
+    setTimeout(resizeAll, 200);
   </script>
 </body>
 </html>
